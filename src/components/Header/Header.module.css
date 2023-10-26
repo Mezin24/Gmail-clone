@@ -1,0 +1,47 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: 20px;
+  height: var(--header-height);
+  /* background-color: yellow; */
+  overflow: hidden;
+}
+
+.logo {
+  height: 80px;
+}
+
+.header_left {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.header_center {
+  flex: 0.8;
+  background-color: whitesmoke;
+  color: gray;
+  display: flex;
+  align-items: center;
+  padding-inline: 15px;
+  border-radius: 5px;
+}
+
+.search {
+  width: 100%;
+  padding: 10px;
+  color: black;
+  border: none;
+  outline: none;
+  padding-left: 10px;
+  background-color: transparent;
+}
+.header_right {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.avatar {
+  cursor: pointer;
+}
