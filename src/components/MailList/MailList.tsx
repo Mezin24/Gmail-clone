@@ -13,8 +13,32 @@ import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import Checkbox from '@mui/material/Checkbox';
 import Section from './Section/Section';
 import MailRow from './MailRow/MailRow';
+import { Mail } from 'types/mail';
+import { useEffect, useState } from 'react';
+import { collection, orderBy, query } from 'firebase/firestore';
+import { onSnapshot } from 'firebase/firestore';
+import { db } from '../../../firebase.config';
 
 const MailList = () => {
+  const [mails, setMails] = useState<Mail[]>([]);
+
+  useEffect(() => {
+    const q = query(collection(db, 'mails'), orderBy('time', 'desc'));
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      const mailsData: Mail[] = querySnapshot.docs.map((doc) => {
+        const docData = {
+          id: doc.id,
+          ...doc.data(),
+          time: new Date(doc.data()?.time?.seconds * 1000).toUTCString(),
+        } as Mail;
+        return docData;
+      });
+      setMails(mailsData);
+    });
+
+    return () => unsubscribe();
+  }, []);
+  console.log(mails);
   return (
     <div className={cls.mailList}>
       <div className={cls.settings}>
@@ -51,7 +75,10 @@ const MailList = () => {
         <Section Icon={LocalOfferIcon} color='green' title='promotion' />
       </div>
       <div className={cls.mailRows}>
-        <MailRow
+        {mails.map((mail) => (
+          <MailRow key={mail.id} mail={mail} />
+        ))}
+        {/* <MailRow
           id='1'
           title='Test'
           subject='Subject'
@@ -64,7 +91,7 @@ const MailList = () => {
           subject='Subject'
           description='This is the test This is the testThis is the testThis is the testThis is the testThis is the testThis is the test'
           time='10pm'
-        />
+        /> */}
       </div>
     </div>
   );

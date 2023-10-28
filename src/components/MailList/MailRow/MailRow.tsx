@@ -6,16 +6,12 @@ import Checkbox from '@mui/material/Checkbox';
 import { useNavigate } from 'react-router-dom';
 
 interface MailRowProps {
-  id: string;
-  title: string;
-  description: string;
-  subject: string;
-  time: string;
+  mail: Mail;
 }
 
-const MailRow = (props: MailRowProps) => {
+const MailRow = ({ mail }: MailRowProps) => {
   const navigate = useNavigate();
-  const { id, description, subject, title, time } = props;
+  const { id, description, subject, title, time } = mail;
   return (
     <div className={cls.mailRow} onClick={() => navigate('/mail')}>
       <div className={cls.options}>

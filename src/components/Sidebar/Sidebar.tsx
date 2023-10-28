@@ -12,11 +12,25 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import PersonIcon from '@mui/icons-material/Person';
 import DuoIcon from '@mui/icons-material/Duo';
 import PhoneIcon from '@mui/icons-material/Phone';
+import { useDispatch } from 'react-redux';
+import { useCallback } from 'react';
+import { mailActions } from 'store/user/userSlice';
 
 const Sidebar = () => {
+  const dispatch = useDispatch();
+
+  const openModal = useCallback(() => {
+    dispatch(mailActions.openSendMessage());
+  }, [dispatch]);
+
   return (
     <div className={cls.sidebar}>
-      <Button className={cls.mainBtn} startIcon={<AddIcon />} color='inherit'>
+      <Button
+        onClick={openModal}
+        className={cls.mainBtn}
+        startIcon={<AddIcon />}
+        color='inherit'
+      >
         compose
       </Button>
       <SidebarOption Icon={InboxIcon} title='Inbox' value={54} active />
