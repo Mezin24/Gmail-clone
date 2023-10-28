@@ -5,8 +5,19 @@
 
   /* VARIABLES */
   --header-height: 50px;
+  --box-shadow: 0 2px 5px -2px rgba(0, 0, 0, 0.75);
+  --sidebar-width: 300px;
+  --sidebar-menu-clr: #818181;
+  --sidebar-hover-clr: #fcecec;
+  --sidebar-hover-text: #c04b37;
 }
 
 body {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+.app_body {
+  height: calc(100vh - var(--header-height));
+  display: flex;
+  gap: 10px;
 }
