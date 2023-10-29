@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { StateSchema } from './StateSchema';
-import { mailReducer } from './user/userSlice';
+import { mailReducer } from './mail/mailSlice';
+import { userReducer } from './user/userSlice';
 
 export const store = configureStore<StateSchema>({
   reducer: {
     mail: mailReducer,
+    user: userReducer,
   },
 });
 

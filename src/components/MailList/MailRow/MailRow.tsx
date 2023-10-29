@@ -1,9 +1,13 @@
-import cls from './MailRow.module.css';
-import StarOutlineIcon from '@mui/icons-material/StarOutline';
 import LabelImportantIcon from '@mui/icons-material/LabelImportant';
+import StarOutlineIcon from '@mui/icons-material/StarOutline';
 import { IconButton } from '@mui/material';
 import Checkbox from '@mui/material/Checkbox';
+import { useCallback } from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { mailActions } from 'store/mail/mailSlice';
+import { Mail } from 'types/mail';
+import cls from './MailRow.module.css';
 
 interface MailRowProps {
   mail: Mail;
@@ -11,9 +15,17 @@ interface MailRowProps {
 
 const MailRow = ({ mail }: MailRowProps) => {
   const navigate = useNavigate();
-  const { id, description, subject, title, time } = mail;
+  const dispatch = useDispatch();
+
+  const { description, subject, title, time } = mail;
+
+  const selectMail = useCallback(() => {
+    dispatch(mailActions.selectMail(mail));
+    navigate('/mail');
+  }, [dispatch, mail, navigate]);
+
   return (
-    <div className={cls.mailRow} onClick={() => navigate('/mail')}>
+    <div className={cls.mailRow} onClick={selectMail}>
       <div className={cls.options}>
         <Checkbox />
         <IconButton>

@@ -14,7 +14,7 @@ import DuoIcon from '@mui/icons-material/Duo';
 import PhoneIcon from '@mui/icons-material/Phone';
 import { useDispatch } from 'react-redux';
 import { useCallback } from 'react';
-import { mailActions } from 'store/user/userSlice';
+import { mailActions } from 'store/mail/mailSlice';
 
 const Sidebar = () => {
   const dispatch = useDispatch();

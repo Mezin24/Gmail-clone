@@ -1,25 +1,26 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { User } from 'firebase/auth';
 
-export interface MailState {
-  sendMessageIsOpen: boolean;
+export interface UserState {
+  user: null | User;
 }
 
-const initialState: MailState = {
-  sendMessageIsOpen: false,
+const initialState: UserState = {
+  user: null,
 };
 
-export const mailSlice = createSlice({
-  name: 'mail',
+export const userSlice = createSlice({
+  name: 'user',
   initialState,
   reducers: {
-    openSendMessage: (state) => {
-      state.sendMessageIsOpen = true;
+    login: (state, action: PayloadAction<User>) => {
+      state.user = action.payload;
     },
-    closeSendMessage: (state) => {
-      state.sendMessageIsOpen = false;
+    logout: (state) => {
+      state.user = null;
     },
   },
 });
 
-export const { actions: mailActions } = mailSlice;
-export const { reducer: mailReducer } = mailSlice;
+export const { actions: userActions } = userSlice;
+export const { reducer: userReducer } = userSlice;

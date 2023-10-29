@@ -13,9 +13,18 @@ import PrintIcon from '@mui/icons-material/Print';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import { IconButton } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { getSelectedMail } from 'store/mail/mailSelector';
+import { useSelector } from 'react-redux';
 
 const Mail = () => {
   const navigate = useNavigate();
+  const selectedMail = useSelector(getSelectedMail);
+
+  if (!selectedMail) {
+    return null;
+  }
+  const { description, subject, time, title } = selectedMail;
+
   return (
     <div className={cls.mail}>
       <div className={cls.tools}>
@@ -62,38 +71,13 @@ const Mail = () => {
       </div>
       <div className={cls.mailBody}>
         <div className={cls.mailHeader}>
-          <h2>Subject</h2>
+          <h2>{subject}</h2>
           <LabelImportantIcon className={cls.labelIcon} />
-          <p>Title</p>
-          <p className={cls.time}>10pm</p>
+          <p>{title}</p>
+          <p className={cls.time}>{time}</p>
         </div>
         <div className={cls.message}>
-          <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestias
-            asperiores aut est eos, saepe inventore commodi odit quos minus
-            tempora repellat ducimus nihil. Eaque totam veniam praesentium
-            voluptatum possimus quas nesciunt sunt, laudantium, obcaecati nulla
-            tempora aliquam vitae ut hic quibusdam tempore labore voluptatibus.
-            Fuga optio eaque praesentium. Quisquam officia necessitatibus
-            laudantium culpa non autem! Reprehenderit quae quaerat blanditiis
-            aliquid consequuntur aut labore dolorum ipsa dolores laborum, optio,
-            voluptates temporibus iusto debitis hic. Doloribus voluptatem eaque,
-            optio consectetur illum facilis quasi maiores nesciunt eligendi ab
-            tempora, quam delectus expedita dolorem fugit facere amet commodi,
-            illo esse alias officiis? Dolorem fugiat porro maxime iusto quis
-            exercitationem, earum nisi temporibus! Dicta quidem consectetur
-            laudantium fugit quis, amet, recusandae eligendi ab reprehenderit
-            sapiente explicabo consequatur deserunt soluta, unde adipisci sunt
-            ex. Illum deleniti ut fugit molestias debitis maiores sed laboriosam
-            eius ex labore assumenda minus tempora, quos dicta distinctio
-            facilis eos earum doloremque pariatur deserunt tenetur. Cupiditate
-            eveniet molestias voluptas deserunt et perferendis aliquid veritatis
-            cumque, similique tenetur quae quibusdam dolorem facilis temporibus.
-            Optio nostrum odio culpa aliquid laboriosam voluptate, earum, saepe
-            non, vero veritatis quam et aspernatur accusantium reiciendis.
-            Commodi cumque corporis fugit, odit vitae at distinctio dicta est
-            placeat, consectetur deleniti.
-          </p>
+          <p>{description}</p>
         </div>
       </div>
     </div>

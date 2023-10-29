@@ -1,4 +1,3 @@
 import { StateSchema } from 'store/StateSchema';
 
-export const getSendMessageIsOpen = (state: StateSchema) =>
-  state.mail.sendMessageIsOpen;
+export const getUser = (state: StateSchema) => state.user.user;

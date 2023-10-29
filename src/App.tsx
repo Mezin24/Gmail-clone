@@ -5,7 +5,7 @@ import SendMail from 'components/SendMail/SendMail';
 import Sidebar from 'components/Sidebar/Sidebar';
 import { useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
-import { getSendMessageIsOpen } from 'store/user/userSelector';
+import { getSendMessageIsOpen } from 'store/mail/mailSelector';
 
 function App() {
   const sendMessageIsOpen = useSelector(getSendMessageIsOpen);

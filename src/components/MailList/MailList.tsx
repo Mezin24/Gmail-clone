@@ -38,7 +38,7 @@ const MailList = () => {
 
     return () => unsubscribe();
   }, []);
-  console.log(mails);
+
   return (
     <div className={cls.mailList}>
       <div className={cls.settings}>
@@ -78,20 +78,6 @@ const MailList = () => {
         {mails.map((mail) => (
           <MailRow key={mail.id} mail={mail} />
         ))}
-        {/* <MailRow
-          id='1'
-          title='Test'
-          subject='Subject'
-          description='This is the test This is the testThis is the testThis is the testThis is the testThis is the testThis is the test'
-          time='10pm'
-        />
-        <MailRow
-          id='1'
-          title='Test'
-          subject='Subject'
-          description='This is the test This is the testThis is the testThis is the testThis is the testThis is the testThis is the test'
-          time='10pm'
-        /> */}
       </div>
     </div>
   );

@@ -4,7 +4,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { useCallback } from 'react';
-import { mailActions } from 'store/user/userSlice';
+import { mailActions } from 'store/mail/mailSlice.ts';
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../../../firebase.config.ts';
 import { serverTimestamp } from 'firebase/firestore';
@@ -27,7 +27,7 @@ const SendMail = () => {
       title: formData.to,
       subject: formData.subject,
       description: formData.message,
-      timestamp: serverTimestamp(),
+      time: serverTimestamp(),
     });
     dispatch(mailActions.closeSendMessage());
   };
